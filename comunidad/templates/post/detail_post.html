@@ -1,0 +1,164 @@
+
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+
+{% block extra_css %}
+<!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static  'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    {% endblock extra_css %}
+
+
+
+      {% block body %}
+    <div class="container">
+        <div class="row">
+
+           
+            <div class="col-sm-12 col-md-8 offset-md-2 mt-5 p-0 post-container">
+                <div class="media pt-3 pl-3 pb-1">
+                    <a href="{% url 'help:UserDetail' request.user.id %}">
+                    <img class="mr-3 rounded-circle" height="35" src="{{ info.profile.picture.url  }}" alt="{{ post.autor_de_post.get_full_name }}">
+                </a>
+                    <div class="media-body">
+                        <p style="margin-top: 5px;">{{ info.autor_de_post.get_full_name }}</p>
+                    </div>
+                </div>
+                
+                <img style="width: 100%;" src="{{ info.imagen.url }}" class="img-fluid" alt="{{ info.titulo }}">
+                </a>
+
+                <p class="mt-1 ml-2" >
+                    <a href="" style="color: #000; font-size: 20px;">
+                        <i class="far fa-heart"></i>
+                    </a> 30 likes
+                </p>
+                <p class="ml-2 mt-0 mb-2">
+                    <b>{{ info.titulo }}</b> - <small>{{ info.fecha_creacion }}</small>
+                </p>
+                <p class="ml-2 mt-0 mb-2">
+                    <b>{{ info.descripcion }} </b> 
+                </p>
+           
+
+
+
+
+
+
+
+
+
+
+
+
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+
+<table class="table table-dark">
+	{% if date %}
+	<thead>
+		<tr>
+			
+			
+			<td>Comentario</td>
+			<td>Autor de comentario</td>
+			
+		
+		</tr>
+		
+	</thead>
+	<tbody>
+		
+		{% for date in date %}
+		<tr>
+			
+			
+			<td>{{date.comentario}}</td>
+			<td>{{date.autor_comentario}}</td>
+			
+			
+			
+			
+		</tr>
+		
+		{% endfor %}
+		{% else %}
+		<h1>No hay Comentario!</h1>
+		{% endif %}
+		
+		
+	</tbody>
+
+
+</table>
+
+
+
+<h1>¿Realizar un Comentario?</h1>
+
+
+
+
+<form method="post" enctype="multipart/form-data">
+
+	{% csrf_token %}
+				<div class="form-group">
+                    <label>Comentario</label>
+                    <textarea class="form-control" name="comentario"></textarea>
+                </div>
+	
+	
+<button type="submit"  name="opcion"> crear</button>
+
+
+</form>
+
+
+ </div>
+            
+        </div>
+    </div>
+
+
+
+{% endblock body %}
+
+
+
+
+
+
+{% block extrajs %}
+
+
+<script src=" {% static 'vendor/jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js'%}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js'%}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js'%}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/chart-area-demo.js'%}"></script>
+    <script src="{% static 'js/demo/chart-pie-demo.js'%}"></script>
+    {% endblock extrajs %}

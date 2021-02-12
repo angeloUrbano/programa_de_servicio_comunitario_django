@@ -1,0 +1,142 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+	
+
+{% block extra_css %}
+<!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static  'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    {% endblock extra_css %}
+
+
+
+
+
+
+ {% block body %}
+ <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Cedula</th>
+      <th scope="col">Correo</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      {% if personas %}
+
+		{% for object in personas %}
+		
+			
+			<td>{{object.Nombre}}</td>
+			<td>{{object.apellidos}}</td>
+			<td>{{object.telefono}}</td>
+			<td>{{object.cedula}}</td>
+      <td>{{object.email}}</td>
+			
+			
+			
+			
+		</tr>
+		{% endfor %}
+		
+		{% else %}
+		<h1>No hay registros de  Personas</h1>
+		{% endif %}
+   
+  </tbody>
+</table>
+<p></p>
+<p></p>
+
+<p></p>
+<p></p>
+<p></p>
+
+<div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-6 pt-3 pb-3" id="profile-box">
+                <h4 class="mb-4">Enviar mensaje a las personas del senso !</h4>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="asunto"
+                            placeholder="Asunto"
+                        >
+                        
+
+                    </div>
+
+
+
+                    
+
+
+
+                  <div class="form-group">
+                        <textarea
+                            class="form-control"
+                            type="text"
+                            name="mensaje"
+                            placeholder="Mensaje"
+                        ></textarea>
+                        
+
+                    </div>
+
+                    
+                    <button type="submit" class="btn btn-primary btn-block mt-5">
+                    Realizar Senso!</button>
+                    <a href="# " class="btn btn-danger btn-block mt-5">Cancelar Senso!</a>
+                </form>
+            </div>
+        </div>
+    </div> 
+
+
+
+
+	
+{% endblock body %}
+
+
+
+
+
+
+{% block extrajs %}
+
+
+<script src=" {% static 'vendor/jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js'%}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js'%}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js'%}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/chart-area-demo.js'%}"></script>
+    <script src="{% static 'js/demo/chart-pie-demo.js'%}"></script>
+    {% endblock extrajs %}

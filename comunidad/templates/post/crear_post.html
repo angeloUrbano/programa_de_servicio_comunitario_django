@@ -1,0 +1,111 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+	
+
+{% block extra_css %}
+<!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static  'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    {% endblock extra_css %}
+
+
+
+
+
+
+ {% block body %}
+
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-6 pt-3 pb-3" id="profile-box">
+                <h4 class="mb-4">Post a new photo!</h4>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                   
+
+                    {# Website field #}
+                    <div class="form-group">
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="titulo"
+                            placeholder="Titulo"
+                        >
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}{{ error }}{% endfor %}
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="descripcion"
+                            placeholder="Descripcion"
+                        >
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}{{ error }}{% endfor %}
+                        </div>
+                        
+                    </div>
+
+                    {# Photo field #} 
+                    <div class="form-group">
+                        <label>Choose your photo:</label>
+                        <input
+                            class="form-control"
+                            type="file"
+                            name="imagen"
+                            placeholder="Imagen"
+                        >
+                        <div class="invalid-feedback">
+                            {% for error in form.imagen.errors %}{{ error }}{% endfor %}
+                        </div>
+                    </div>
+
+                    {{form3.as_p}}
+
+                    <button type="submit" class="btn btn-primary btn-block mt-5">Publish!</button>
+                </form>
+            </div>
+        </div>
+    </div> 
+
+
+
+
+{% endblock body %}
+
+
+
+
+
+
+{% block extrajs %}
+
+
+<script src=" {% static 'vendor/jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js'%}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js'%}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js'%}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/chart-area-demo.js'%}"></script>
+    <script src="{% static 'js/demo/chart-pie-demo.js'%}"></script>
+    {% endblock extrajs %}
